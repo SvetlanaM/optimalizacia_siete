@@ -11,9 +11,9 @@ import java.util.LinkedList;
 
 
 /**
- * kedze vrcholy boli zadane od 1 ja som si to precislo od NULY ale vypisujem od jednotky
+ * vrcholy siete som dala od nuly ale vypisujem ich od jednotky
  * cize v mape su ulozene od nuly 
- * napr. ak je pUC 9 tak uz mna to je 8, ale vypisujem 9,
+ * 
  * **/
 
 public class Republic{
@@ -136,7 +136,7 @@ public class Republic{
 		return temp;
 	}
 	
-	//odpojim mesto PucCIty z republiky 
+	//odpojim zo siete
 	private boolean[][] getCityMapWithoutPucCity(Integer pucCity)
 	{
 		boolean ret[][] = new boolean[numberOfCities][numberOfCities];
@@ -159,10 +159,10 @@ public class Republic{
 		return (Integer)set.toArray()[0];
 	}
 	
-	public HashMap<Integer,HashSet<Integer>> getRepublicComponents(boolean[][] map,Integer pucCity) //nahdaze mi do mapy komonenty grafu na ake sa rozpadne republika po PUC pricom PUC mesto vynecha
+	public HashMap<Integer,HashSet<Integer>> getRepublicComponents(boolean[][] map,Integer pucCity) //nahdaze mi do mapy komonenty grafu 
 	{
 		HashMap<Integer,HashSet<Integer>> temp = new  HashMap<Integer, HashSet<Integer>>();
-		HashSet<Integer> allCities = new HashSet<Integer>();// cisla miest bez pucu
+		HashSet<Integer> allCities = new HashSet<Integer>();// cisla 
 		HashSet<Integer> oneComponent = new HashSet<Integer>(); //jeden komponent
 		for(int i=0;i<map.length;i++)
 		{
@@ -305,22 +305,22 @@ public class Republic{
 	public String toString()
 	{
 		String out="";
-		out+= "***Prva poduloha***\r\n";
-		out+= "Cislo mesta Puc: "+Integer.toString(this.pucCity+1)+"\r\n";
-		out+= "Pocet miest v republike: "+Integer.toString(numberOfCities)+"\r\n";
-		out+= "Pocet priamych ciest v republike: "+Integer.toString(numberOfRoads)+"\r\n";
-		out+= "Pocet ciest do mesta Puc: "+Integer.toString(numberOfRoadsToCity(pucCity))+"\r\n";
-		out+= "Existuje mesto z ktoreho vedie iba jedna cesta: "+Boolean.toString(isOneRoadCity())+"\r\n";
-		out+= "Mesto(a) s najvacsim poctom ciest: "+getCitiesWithTheMostCountOfRoadsString()+"\r\n";
-		out+= "***Prva poduloha***\r\n";
-		out+= "***Druha poduloha***\r\n";
-		out+= "Je mozne cestovat do kazdeho mesta v republike aj po Puci(okrem Puc mesta): "+isConnected(getCityMapWithoutPucCity(this.pucCity))+"\r\n";
-		out+= "***Druha poduloha***\r\n";
-		out+= "***Tretia poduloha***\r\n";
+		out+= "***Prvy bod sieete***\r\n";
+		out+= "Cislo bodu: "+Integer.toString(this.pucCity+1)+"\r\n";
+		out+= "Pocet bodov v sieti: "+Integer.toString(numberOfCities)+"\r\n";
+		out+= "Pocet priamych spojeni: "+Integer.toString(numberOfRoads)+"\r\n";
+		out+= "Pocet nepriamzch spojeni: "+Integer.toString(numberOfRoadsToCity(pucCity))+"\r\n";
+		out+= "Existuje bod, z ktoreho vedia iba jedna cesta: "+Boolean.toString(isOneRoadCity())+"\r\n";
+		out+= "Bod(y) s najvacsim poctom ciest: "+getCitiesWithTheMostCountOfRoadsString()+"\r\n";
+		out+= "***Prvy bod***\r\n";
+		out+= "***Druhy bod***\r\n";
+		out+= "Je mozne prepojit jednotlive aplikacii v sieti: "+isConnected(getCityMapWithoutPucCity(this.pucCity))+"\r\n";
+		out+= "***Druhy bod***\r\n";
+		out+= "***Treti bod***\r\n";
 		out+= fixConnectivityBetweenCities(getCityMapWithoutPucCity(this.pucCity),this.pucCity)+"\r\n";
-		out+= "***Tretia poduloha***\r\n";
+		out+= "***Treti bod***\r\n";
 		out+= "\r\n";
-		out+= "Mapa republiky:\r\n";
+		out+= "Mapa siete:\r\n";
 		out+="   ";
 		for(int i = 0;i<cityMap.length;i++)
 		{
